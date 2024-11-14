@@ -12,7 +12,8 @@ export class CategoryService {
         private readonly categoryRepository: Repository<Category>
     ) { }
 
-    async create(category: CreateCategoryDTO) {
+    async create(data: CreateCategoryDTO) {
+        const category = this.categoryRepository.create(data)
         return instanceToPlain(await this.categoryRepository.save(category));
     }
 

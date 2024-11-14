@@ -1,4 +1,5 @@
 import { ArgumentsHost, ExceptionFilter, Catch, HttpException, HttpStatus, Logger } from "@nestjs/common";
+import { ErrorResponse } from "src/types/global";
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
@@ -20,7 +21,7 @@ export class AllExceptionFilter implements ExceptionFilter {
                 message: 'Internal Server Error'
             }
 
-        const responsePayload = {
+        const responsePayload: ErrorResponse = {
             success: false,
             statusCode: status,
             error: true,

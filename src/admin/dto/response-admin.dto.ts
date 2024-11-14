@@ -4,6 +4,7 @@ export class ResponseAdminDTO {
     firstName: string;
     lastName?: string;
     email: string;
+    company: string;
     verified: boolean;
     createdAt: Date;
     updatedAt: Date;

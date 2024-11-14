@@ -1,6 +1,7 @@
 import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor } from '@nestjs/common';
 import { catchError, map, tap } from 'rxjs';
 import { throwError } from 'rxjs';
+import { SuccessResponse } from 'src/types/global';
 
 @Injectable()
 export class ResponseInterceptor<T> implements NestInterceptor {
@@ -23,7 +24,7 @@ export class ResponseInterceptor<T> implements NestInterceptor {
                     message = data.message;
                     delete data.message;
                 }
-                const body = {
+                const body: SuccessResponse = {
                     success: response.statusCode < 400,
                     statusCode: response.statusCode,
                     message,

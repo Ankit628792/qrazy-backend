@@ -4,8 +4,8 @@ import { Column, Entity } from "typeorm";
 @Entity({ name: "companies" })
 export class Company extends BaseEntity {
 
-    @Column({ name: "name", type: "varchar" })
-    name: string;
+    @Column({ name: "title", type: "varchar", unique: true })
+    title: string;
 
     @Column({ name: "gst_no", type: "varchar", nullable: true })
     gstNo: string;

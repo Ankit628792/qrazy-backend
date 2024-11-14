@@ -25,7 +25,7 @@ export class AdminService {
         return instanceToPlain(admins);
     }
 
-    async findById(id: string): Promise<ResponseAdminDTO | null> {
+    async findById(id: string) {
         const admin = await this.adminRepository.findOne({ where: { id } })
         if (!admin) {
             return null;

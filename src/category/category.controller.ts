@@ -20,8 +20,8 @@ export class CategoryController {
         status: 201,
         description: 'Category added successfully'
     })
-    async createCategory(@Body() createCategoryDto: CreateCategoryDTO, @Req() request: AuthRequest) {
-        return this.categoryService.create({ ...createCategoryDto, createdBy: request.id });
+    async createCategory(@Body() body: CreateCategoryDTO, @Req() request: AuthRequest) {
+        return this.categoryService.create({ ...body, createdBy: request.id });
     }
 
     @Public()
@@ -50,8 +50,8 @@ export class CategoryController {
         summary: 'Update category',
         description: 'Category updated successfully'
     })
-    updateCategory(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDTO) {
-        return this.categoryService.updateCategory(id, updateCategoryDto);
+    updateCategory(@Param('id') id: string, @Body() body: UpdateCategoryDTO) {
+        return this.categoryService.updateCategory(id, body);
     }
 
     @Public()

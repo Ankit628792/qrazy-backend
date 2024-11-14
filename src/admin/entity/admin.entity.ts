@@ -18,6 +18,9 @@ export class Admin extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     password: string;
 
+    @Column({ type: "uuid", default: false, nullable: true })
+    company: string;
+
     @Column({ type: "boolean", default: false })
     verified: boolean;
 

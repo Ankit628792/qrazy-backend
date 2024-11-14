@@ -23,6 +23,8 @@ export class UpdateAdminDTO extends PartialType(CreateAdminDTO) {
     @Length(1, 100, { message: "Last Name is Required" })
     lastName?: string;
 
+    company?: string;
+
     verified?: boolean
 
 }
