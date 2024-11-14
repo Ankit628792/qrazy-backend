@@ -2,11 +2,12 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { CreateAdminDTO } from "./dto/create-admin.dto";
 import { Repository } from "typeorm";
 import { Admin } from "./entity/admin.entity";
-import { hashPassword } from "@common/util/crypto.util";
+import { comparePassword, hashPassword } from "@common/util/crypto.util";
 import { ResponseAdminDTO } from "./dto/response-admin.dto";
 import { instanceToPlain } from "class-transformer";
 import { UpdateAdminDTO } from "./dto/update-admin.dto";
 import { InjectRepository } from "@nestjs/typeorm";
+import { UpdatePasswordDTO } from "./dto/update-password.dto";
 
 @Injectable()
 export class AdminService {
@@ -40,7 +41,7 @@ export class AdminService {
         return await this.adminRepository.findOne({ where: data })
     }
 
-    async create(data: CreateAdminDTO) {
+    async create(data: CreateAdminDTO): Promise<ResponseAdminDTO | null> {
         const admin = await this.findByEmail(data.email);
         if (admin) {
             throw new BadRequestException('Email already exists')
@@ -51,7 +52,7 @@ export class AdminService {
             password: hashedPassword,
         })
         const savedAdmin = await this.adminRepository.save(newAdmin)
-        return instanceToPlain(savedAdmin)
+        return instanceToPlain(savedAdmin) as ResponseAdminDTO
     }
 
     async update(id: string, data: UpdateAdminDTO) {
@@ -59,12 +60,33 @@ export class AdminService {
         if (!admin) {
             throw new BadRequestException('Admin not found')
         }
-        let updatedAdmin = data;
-        if (data.password) {
-            updatedAdmin.password = await hashPassword(data.password)
-        }
-        const savedAdmin = await this.adminRepository.save({ ...admin, ...updatedAdmin })
+        const savedAdmin = await this.adminRepository.save({ ...admin, ...data })
         return instanceToPlain(savedAdmin)
+    }
+
+    async savePassword(data: { password: string, id?: string, admin?: CreateAdminDTO }) {
+        if (!data.id || !data.admin) {
+            throw new BadRequestException('Missing required parameters')
+        }
+        let admin = null;
+        if (data.admin) {
+            admin = data.admin;
+        } else {
+            admin = await this.findById(data.id)
+        }
+        return this.adminRepository.save({ ...admin, password: await hashPassword(data.password) })
+    }
+
+    async updatePassword(id: string, data: UpdatePasswordDTO) {
+        const admin = await this.findOne({ id });
+        if (!admin) {
+            throw new BadRequestException('User not found')
+        }
+        if (!(await comparePassword(data.currentPassword, admin.password))) {
+            throw new BadRequestException('Invalid current password')
+        }
+        const updatedAdmin = await this.savePassword({ password: data.newPassword, admin });
+        return instanceToPlain(updatedAdmin)
     }
 
     async removeAdmin(id: string) {

@@ -9,10 +9,10 @@ export class JWTService {
     ) { }
 
     async generateToken(data: { sub: string }) {
-        return await this.jwtService.signAsync(data);
+        return this.jwtService.signAsync(data);
     }
 
     async validateToken(token: string) {
-        return await this.jwtService.verifyAsync(token);
+        return this.jwtService.verifyAsync(token);
     }
 }

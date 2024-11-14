@@ -1,16 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import { ResponseInterceptor } from '@common/interceptor/response.interceptor';
-import { AllExceptionFilter } from '@common/exception/all-exception.filter';
+import { setupSwagger } from './config/swagger.config';
+import { initializeMiddlewares } from './config/middleware.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix("api/v1");
-  app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalInterceptors(new ResponseInterceptor());
-  app.useLogger(['log', 'error', 'warn', 'debug', 'verbose'])
-  app.useGlobalFilters(new AllExceptionFilter())
+  const app = await NestFactory.create(AppModule, { cors: true });
+  initializeMiddlewares(app);
+  setupSwagger(app);
   await app.listen(process.env.PORT ?? 8000);
 }
 bootstrap();

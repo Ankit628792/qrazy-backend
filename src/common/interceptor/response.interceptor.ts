@@ -33,6 +33,9 @@ export class ResponseInterceptor<T> implements NestInterceptor {
                 if (Object.keys(data).length) {
                     body.data = data;
                 }
+                else {
+                    delete body.data;
+                }
                 return body
             }),
             tap(({ statusCode, data }) => {

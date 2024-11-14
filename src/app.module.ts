@@ -7,10 +7,13 @@ import { RoleModule } from './role/role.module';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ProductModule } from './product/product.module';
+import { CompanyModule } from './company/company.module';
+import { CategoryModule } from './category/category.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    AuthModule, DatabaseModule, CommonModule, AdminModule, RoleModule],
+    AuthModule, DatabaseModule, CommonModule, AdminModule, RoleModule, ProductModule, CompanyModule, CategoryModule],
   controllers: [AppController],
   providers: [AppService],
 })

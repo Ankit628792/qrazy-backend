@@ -44,7 +44,8 @@ export class AuthGuard implements CanActivate {
         throw new UnauthorizedException('Session expired');
       }
       request['id'] = payload.sub;
-    } catch {
+    } catch (error) {
+      console.log(error)
       throw new UnauthorizedException();
     }
     return true;

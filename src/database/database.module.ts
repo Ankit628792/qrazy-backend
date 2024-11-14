@@ -20,7 +20,7 @@ import { DataSource } from 'typeorm';
                 autoLoadEntities: true,
                 ssl: true,
                 migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-                synchronize: true,
+                // synchronize: true,
                 migrationsRun: true
             }),
             dataSourceFactory: async (options) => {
