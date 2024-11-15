@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
-import { BaseEntity } from "src/common/entity/base.entity";
 import { Column, Entity } from "typeorm";
+import { BaseEntity } from "@common/entity/base.entity";
 
 @Entity({ name: "admins" })
 export class Admin extends BaseEntity {
@@ -18,7 +18,7 @@ export class Admin extends BaseEntity {
     @Column({ type: "varchar", length: 255 })
     password: string;
 
-    @Column({ type: "uuid", default: false, nullable: true })
+    @Column({ type: "uuid", nullable: true })
     company: string;
 
     @Column({ type: "boolean", default: false })

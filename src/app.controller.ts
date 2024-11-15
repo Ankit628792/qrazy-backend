@@ -11,6 +11,7 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
   @Get("/health")
   healthCheck(): string {
     return this.appService.getHello();
@@ -20,4 +21,5 @@ export class AppController {
   crash(): never {
     throw new Error("This is a crash");
   }
+
 }

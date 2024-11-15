@@ -27,11 +27,14 @@
       "@role/*": [
         "src/role/*"
       ],
-      "@project/*": [
-        "src/project/*"
+      "@company/*": [
+        "src/company/*"
       ],
-      "@task/*": [
-        "src/task/*"
+      "@category/*": [
+        "src/category/*"
+      ],
+      "@product/*": [
+        "src/product/*"
       ],
       "@common/*": [
         "src/common/*"

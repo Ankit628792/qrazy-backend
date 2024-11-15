@@ -1,8 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch } from "@nestjs/common";
-import { ValidIdPipe } from "src/common/pipe/valid-id.pipe";
-import { UpdateAdminDTO } from "./dto/update-admin.dto";
+import { Controller } from "@nestjs/common";
 import { AdminService } from "./admin.service";
-import { ApiTags } from "@nestjs/swagger";
 
 @Controller('admin')
 export class AdminController {

@@ -1,11 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { CreateCategoryDTO, ResponseCategoryDTO, UpdateCategoryDTO } from './dto/category.dto';
+import { CreateCategoryDTO, UpdateCategoryDTO } from './dto/category.dto';
 import { ApiRoute } from '@common/decorator/swagger.decorator';
 import { Public } from '@common/guard/auth.guard';
 import { AuthRequest } from 'src/types/global';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { instanceToPlain } from 'class-transformer';
 
 @ApiBearerAuth()
 @Controller('category')

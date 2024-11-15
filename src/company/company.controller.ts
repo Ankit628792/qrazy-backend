@@ -4,7 +4,9 @@ import { CreateCompanyDTO } from './dto/create-company.dto';
 import { ApiRoute } from '@common/decorator/swagger.decorator';
 import { AuthRequest } from 'src/types/global';
 import { UpdateCompanyDTO } from './dto/update-category.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('company')
 export class CompanyController {
     constructor(
