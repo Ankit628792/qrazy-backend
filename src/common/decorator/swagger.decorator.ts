@@ -33,15 +33,15 @@ export function ApiRoute({
         ...errors.map(error => ApiErrorResponse(error.status, error.description)),
 
     ];
-    if (response) {
-        decorators.push(ApiResponse({
-            example: {
-                success: true,
-                statusCode: status,
-                message: description || 'Request was successful',
-                data: response,
-            }
-        }))
-    }
+    // if (response) {
+    decorators.push(ApiResponse({
+        example: {
+            success: true,
+            statusCode: status,
+            message: description || 'Request was successful',
+            data: "result or null",
+        }
+    }))
+    // }
     return applyDecorators(...decorators);
 }

@@ -32,8 +32,8 @@ export class Product {
     @Column({ name: "thumbnail", type: "text" })
     thumbnail: string;
 
-    @Column({ name: "images", type: "jsonb", default: [] })
-    images: Array<{ url: string, thumbnail: string }>
+    @Column({ name: 'images', type: 'text', array: true, default: [] })
+    images: string[]
 
     @Column({ name: "created_by", type: "uuid" })
     createdBy: string;

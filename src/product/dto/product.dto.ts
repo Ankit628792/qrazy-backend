@@ -47,9 +47,9 @@ export class CreateProductDTO extends BaseProductDTO {
     @IsString()
     thumbnail: string;
 
-    @ApiProperty({ example: [{ url: "https://example.com/product1_image1.jpg", thumbnail: "https://example.com/product1_thumbnail1.jpg" }, { url: "https://example.com/product1_image2.jpg", thumbnail: "https://example.com/product1_thumbnail2.jpg" }] })
+    @ApiProperty({ example: ["https://example.com/product1_image1.jpg", "https://example.com/product1_thumbnail1.jpg"] })
     @IsNotEmpty()
-    images: { url: string, thumbnail: string }[];
+    images: string[];
 
     @ApiProperty()
     @IsOptional()

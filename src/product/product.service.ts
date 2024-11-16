@@ -84,4 +84,16 @@ export class ProductService {
         return this.productRepository.find(filter);
     }
 
+    async remove(id: string) {
+        const product = await this.findById(id);
+        if (!product) {
+            throw new BadRequestException('Product not found');
+        }
+        const result = await this.productRepository.delete({ id });
+        if (!result.affected) {
+            throw new BadRequestException('Unable to remove category')
+        }
+        return product.id
+    }
+
 }

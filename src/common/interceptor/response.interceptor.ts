@@ -31,12 +31,16 @@ export class ResponseInterceptor<T> implements NestInterceptor {
                     data: Object.keys(data).length ? data : null,
                 };
 
-                if (Object.keys(data).length) {
+                if (data?.data) {
+                    body.data = data.data;
+                }
+                else if (Object.keys(data).length) {
                     body.data = data;
                 }
                 else {
                     delete body.data;
                 }
+
                 return body
             }),
             tap(({ statusCode, data }) => {

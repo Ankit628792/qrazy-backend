@@ -21,7 +21,8 @@ import { DataSource } from 'typeorm';
                 ssl: true,
                 migrations: [__dirname + '/../migrations/*{.ts,.js}'],
                 // synchronize: true,
-                migrationsRun: true
+                migrationsRun: true,
+                // logging: true
             }),
             dataSourceFactory: async (options) => {
                 const logger = new Logger();
