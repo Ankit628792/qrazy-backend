@@ -12,13 +12,15 @@ import { CompanyModule } from './company/company.module';
 import { CategoryModule } from './category/category.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { UploadModule } from './upload/upload.module';
+import { OrderModule } from './order/order.module';
+import { QrModule } from './qr/qr.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
 
     MulterModule.register(),
 
-    AuthModule, DatabaseModule, CommonModule, AdminModule, RoleModule, ProductModule, CompanyModule, CategoryModule, UploadModule],
+    AuthModule, DatabaseModule, CommonModule, AdminModule, RoleModule, ProductModule, CompanyModule, CategoryModule, UploadModule, OrderModule, QrModule],
   controllers: [AppController],
   providers: [AppService],
 })

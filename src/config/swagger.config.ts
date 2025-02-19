@@ -4,10 +4,10 @@ import { INestApplication } from '@nestjs/common';
 
 export function setupSwagger(app: INestApplication): void {
     const config = new DocumentBuilder()
-        .setTitle('My API')
+        .setTitle('Qrazy API')
         .setDescription('API documentation')
         .setVersion('1.0')
-        .addTag('APIs')
+        .addTag('Qrazy APIs')
         .addBearerAuth()
         .build();
     const documentFactory = () => SwaggerModule.createDocument(app, config);
