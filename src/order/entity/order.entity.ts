@@ -1,6 +1,6 @@
 import { Admin } from "@admin/entity/admin.entity";
+import { ORDER_STATUS } from "@app/types/enum";
 import { BaseEntity } from "@common/entity/base.entity";
-import { ORDER_STATUS } from "src/types/global";
 import { Column, Entity, OneToOne } from "typeorm";
 
 

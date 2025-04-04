@@ -1,6 +1,6 @@
+import { QR_STATUS } from "@app/types/enum";
 import { Product } from "@product/entity/product.entity";
 import { Order } from "src/order/entity/order.entity";
-import { QR_STATUS } from "src/types/global";
 import { Column, Entity, OneToOne } from "typeorm";
 
 @Entity({ name: "qrs" })

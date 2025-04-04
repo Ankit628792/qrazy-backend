@@ -41,6 +41,9 @@
       ],
       "@database/*": [
         "src/database/*"
+      ],
+      "@app/*": [
+        "src/*"
       ]
     }
   }

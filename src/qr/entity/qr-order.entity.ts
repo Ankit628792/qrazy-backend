@@ -2,9 +2,9 @@ import { Admin } from "@admin/entity/admin.entity";
 import { BaseEntity } from "@common/entity/base.entity";
 import { Product } from "@product/entity/product.entity";
 import { Order } from "src/order/entity/order.entity";
-import { QR_Type } from "src/types/global";
 import { Column, Entity, OneToMany, OneToOne } from "typeorm";
 import { QRProduct } from "./qr-product.entity";
+import { QR_Type } from "@app/types/enum";
 
 @Entity({ name: "qr_orders" })
 export class QROrder extends BaseEntity {
